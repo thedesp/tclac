@@ -203,9 +203,9 @@ select:
     id: vswing
     entity_category: config
     options:
-      - "Von oben nach unten"
-      - "In der oberen Hälfte"
-      - "In der unteren Hälfte"
+      - "Full vertical swing"
+      - "Upper half swing"
+      - "Lower half swing"
     optimistic: true
     restore_value: true
     on_value:
@@ -225,10 +225,10 @@ select:
     id: hswing
     entity_category: config
     options:
-      - "Von links nach rechts"
-      - "Im linken Bereich"
-      - "Im Zentrum"
-      - "Im rechten Bereich"
+      - "Full horizontal swing"
+      - "Left half swing"
+      - "Center swing"
+      - "Right half swing"
     optimistic: true
     restore_value: true
     on_value:
@@ -250,12 +250,12 @@ select:
     id: vfixing
     entity_category: config
     options:
-      - "Letzte Position"
-      - "Ganz nach oben"
-      - "In der oberen Hälfte"
-      - "In der Mitte"
-      - "In der unteren Hälfte"
-      - "Ganz nach unten"
+      - "Last position"
+      - "Top position"
+      - "Upper position"
+      - "Middle position"
+      - "Lower position"
+      - "Bottom position"
     optimistic: true
     restore_value: true
     on_value:
@@ -281,12 +281,12 @@ select:
     id: hfixing
     entity_category: config
     options:
-      - "Letzte Position"
-      - "Ganz nach links"
-      - "In der linken Hälfte"
-      - "In der Mitte"
-      - "In der rechten Hälfte"
-      - "Ganz nach rechts"
+      - "Last position"
+      - "All the way left"
+      - "Left half position"
+      - "Center position"
+      - "Right half position"
+      - "All the way right"
     optimistic: true
     restore_value: true
     on_value:
