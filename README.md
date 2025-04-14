@@ -1,27 +1,31 @@
 # 🌀 TCL Air Conditioner Integration for Home Assistant
 
-> 🇩🇪 Übersetzt mit ChatGPT – erfolgreich getestet mit **TCL TAC-12CHDA**  
-> Einfaches DIY-Projekt mit ESP32 + USB-Kabel. Keine Cloud nötig.
+> Original project repo at https://github.com/I-am-nightingale/tclac
+> Project blog in russian https://dzen.ru/a/ZmdoyUNswXWnulhg
+> German translatioon by https://github.com/sorz2122/tclac
+> Easy DIY using ESP32 and USB-A cable/connector
 
 ---
 
-## 🛠️ Was du brauchst
+## 🛠️ What you need
 
-- **ESP32** (z. B. ESP32-C3, WROOM32, NodeMCU)
-- **USB-A-Stecker oder -Kabel**  
-  👉 Ich habe dieses verwendet: [AliExpress-Link](https://www.aliexpress.com/item/1005005776162012.html)
-- **Home Assistant mit ESPHome (ab Version 2023.3.0)**
+- **ESP32** (z. B. ESP32-C3, WROOM32, NodeMCU) devkit is recommended for easy programming via USB.
+  👉 I use this module [ESP32-C3 Super Mini](https://www.aliexpress.com/item/1005005967641936.html?spm=a2g0o.order_list.order_list_main.98.794e1802hxxIy0)
+- **USB-A-Stecker oder -Kabel**
+  👉 Any standard USB cable with USB-A male on one end should work, like the one that came with your gadgets.
+  👉 USB-A male connector like this [AliExpress-Link](https://www.aliexpress.com/item/1005005776162012.html)
+- **Home Assistant with ESPHome (Version 2023.3.0 and up)**
 
 ---
 
-## 🔌 Verkabelung
+## 🔌 Cable connection
 
-| USB-A Pin | Kabelfarbe | → ESP32 Pin |
+| USB-A Pin | Cable color| → ESP32 Pin  |
 |-----------|------------|--------------|
-| GND       | Schwarz    | VIN/VCC      |
-| D+        | Grün       | GND          |
-| D-        | Grau       | RXD          |
-| VBUS      | Rot        | TXD          |
+| GND       | Black      | VIN/VCC      |
+| D+        | Green      | GND          |
+| D-        | Gray/White | RXD          |
+| VBUS      | Red        | TXD          |
 
 ### 🔍 Beispielbilder
 (Beachte, dass ich hier nicht auf die Farben der Kabel geachtet habe. Die Farben in der Tabelle entsprechen jedoch in der Regel gängigen USB-A-Kabeln, die man einfach abschneiden kann.)
@@ -51,10 +55,10 @@
 ### 3. Konfiguration einfügen
 
 #### Option A: Einfache Konfiguration
-[📄 Sample_conf.yaml](https://github.com/sorz2122/tclac/blob/master/Sample_conf.yaml)
+[📄 Sample_conf.yaml](https://github.com/thedesp/tclac/blob/master/Sample_conf.yaml)
 
 #### Option B: Erweiterte Konfiguration
-[📄 TCL-Conditioner.yaml](https://github.com/sorz2122/tclac/blob/master/TCL-Conditioner.yaml)
+[📄 TCL-Conditioner.yaml](https://github.com/thedesp/tclac/blob/master/TCL-Conditioner.yaml)
 
 📝 **Wichtig:**  
 - WLAN-Daten, Gerätename etc. anpassen  
@@ -78,15 +82,6 @@ Diese Modelle wurden erfolgreich getestet:
 
 ⚠️ **Hinweis:**  
 Auch wenn die Modellbezeichnung passt, kann es Unterschiede geben (kein USB-Anschluss, kein UART auf der Platine etc.).
-
----
-
-## ☕ Unterstützung
-
-https://buymeacoffee.com/sorz2122
-
-<img src="https://github.com/user-attachments/assets/87d5d62f-ba5c-4a7e-a4b8-4cf1fd3018af" width="400"/>
-<br/>
 
 ---
 
