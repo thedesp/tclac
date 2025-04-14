@@ -25,8 +25,8 @@ substitutions:
   api_key: QpZTJbJ0Uuv2HDJOQKb9QYDFZyQR9JV7JQmmgVGxx8U=
 
   # GPIO pins of the module to which UART is connected:
-  uart_rx: GPIO3 #Change to your prefered GPIO
-  uart_tx: GPIO1 #Change to your prefered GPIO
+  uart_rx: GPIO4 #Change to your prefered GPIO
+  uart_tx: GPIO3 #Change to your prefered GPIO
 
   # GPIO pins for status LEDs (receive/transmit). Only work if "leds" is enabled in "packages".
   # If you don't want to use LEDs, you can enter any values here.

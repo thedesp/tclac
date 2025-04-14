@@ -1,17 +1,19 @@
-# 🌀 TCL Air Conditioner Integration for Home Assistant
+# 🌀 TCL Air Conditioner Integration for Home Assistant (via ESPhome)
+
+TCL air confitioner model with wifi feature usually comes with wifi module that looks like a USB dongle. However, TCL only use standard USB-A connector but change the pinouts to control the AC unit via UART and thus some modifications are needed to connect ESP32 module to the AC unit.
+
 
 > Original project repo at https://github.com/I-am-nightingale/tclac  
 > Project blog in russian https://dzen.ru/a/ZmdoyUNswXWnulhg  
-> German translatioon by https://github.com/sorz2122/tclac  
-> Easy DIY using ESP32 and USB-A cable/connector
+> German translation by https://github.com/sorz2122/tclac  
 
 ---
 
 ## 🛠️ What you need
 
-- **ESP32** (z. B. ESP32-C3, WROOM32, NodeMCU) devkit is recommended for easy programming via USB.  
+- **ESP32** (e.g. ESP32-C3, WROOM32, NodeMCU) common ESP32 devkit is recommended for easy flashing via USB.
   - I use this module [ESP32-C3 Super Mini](https://www.aliexpress.com/item/1005005967641936.html?spm=a2g0o.order_list.order_list_main.98.794e1802hxxIy0)
-- **USB-A-Stecker oder -Kabel**
+- **USB-A connector or cable**
   - Any standard USB cable with USB-A male on one end should work, like the one that came with your gadgets.
   - USB-A male connector like this [AliExpress-Link](https://www.aliexpress.com/item/1005005776162012.html)
 - **Home Assistant with ESPHome (Version 2023.3.0 and up)**
@@ -27,74 +29,71 @@
 | D-        | Gray/White | RXD          |
 | VBUS      | Red        | TXD          |
 
-### 🔍 Beispielbilder
-(Beachte, dass ich hier nicht auf die Farben der Kabel geachtet habe. Die Farben in der Tabelle entsprechen jedoch in der Regel gängigen USB-A-Kabeln, die man einfach abschneiden kann.)
+### 🔍 Sample Image
+The image show how to connect USB-A male pinout to ESP module.
 
-<img src="https://github.com/user-attachments/assets/9b674e06-41ca-4bcf-b09b-691a5fbd8545" width="400"/>
-<br/>
+GPIO4 = RX and GPIO3 = TX as in the sample yaml configuration 
 
-![Wiring Example 2](https://github.com/user-attachments/assets/e30fadd9-19cd-47ec-baab-86f8a80410f6)
-
-![7480a856c7839044d7a04292d352b709a2155c07_2_296x500](https://github.com/user-attachments/assets/5b3ccbb8-eb62-4743-8d05-f88a9b986743)
 
 ---
 
-## 🧠 Einrichtung in Home Assistant
+## 🧠 Installation in Home Assistant
 
-> Die Lösung basiert auf **ESPHome** und funktioniert nur mit Home Assistant.
+> Required **ESPHome** add-on in Home Assistant.
 
-### 1. ESPHome installieren
+### 1. ESPHome installation
 
-- In Home Assistant unter **Einstellungen → Add-ons → ESPHome** installieren
+- In Home Assistant under **Settings → Add-ons → Add-on store → ESPHome Device Builder**
 
-### 2. Neues Gerät erstellen
+### 2. Create new device
 
-- Im ESPHome-Dashboard → "New Device"
-- Deinen ESP32-Typ auswählen, z. B. `esp32-c3-devkitm-1` oder `nodemcu-32s`
+- In ESPHome-Dashboard → "New Device"
+- Select your ESP32 Type e.g. `esp32-c3-devkitm-1` or `nodemcu-32s`
 
-### 3. Konfiguration einfügen
+### 3. YAML configuration
 
-#### Option A: Einfache Konfiguration
+#### Option A: Simple configuration
 [📄 Sample_conf.yaml](https://github.com/thedesp/tclac/blob/master/Sample_conf.yaml)
 
-#### Option B: Erweiterte Konfiguration
+#### Option B: Advanceced configuration
 [📄 TCL-Conditioner.yaml](https://github.com/thedesp/tclac/blob/master/TCL-Conditioner.yaml)
 
-📝 **Wichtig:**  
-- WLAN-Daten, Gerätename etc. anpassen  
-- Kommentare im YAML helfen beim Einrichten
+📝 **Important:**  
+- Adjust Wi-Fi data, device name, etc.  
+- See comments in YAML for help with setup
 
-### 4. Auf ESP32 flashen
+### 4. Flash to ESP32
 
-- USB-Kabel anschließen oder OTA (Over-the-Air) verwenden
+- Connect a USB cable for fist time flash.
+- OTA (Over-the-Air) can be used for subsequent flashes.
 
 ---
 
-## ✅ Kompatible Klimaanlagen
+## ✅ Compatible air conditioner model
 
-Diese Modelle wurden erfolgreich getestet:
+These models have been successfully tested:
 
-- **TCL:** TAC-07CHSA / TAC-09CHSA / TAC-12CHSA / TAC-12CHDA
+- **TCL:** TAC-07CHSA / TAC-09CHSA / TAC-12CHSA / TAC-12CHDA / **TAC-PRO19**
 - **Daichi:** AIR20AVQ1, AIR25AVQS1R-1, DA35EVQ1-1
 - **Axioma:** ASX09H1 / ASB09H1
 - **Dantex:** RK-12SATI / RK-12SATIE  
-- ...und ähnliche Modelle
+- ...and similar models
 
-⚠️ **Hinweis:**  
-Auch wenn die Modellbezeichnung passt, kann es Unterschiede geben (kein USB-Anschluss, kein UART auf der Platine etc.).
+⚠️ **Note:**  
+Even if the model name matches, there may be differences (no USB port, no UART on the board, etc.).
 
 ---
 
-## 🔧 Erweiterte Konfiguration per Remote Package
+## 🔧 Advanced configuration via remote package
 
-Du kannst die Konfiguration modular laden:
+You can load the configuration modularly:
 
 ```yaml
 packages:
   remote_package:
-    url: https://github.com/sorz2122/tclac.git
+    url: https://github.com/thedesp/tclac.git
     ref: master
     files:
-      - packages/core.yaml   # Hauptmodul
+      - packages/core.yaml   # Mandatory
       # - packages/leds.yaml # Optional
     refresh: 30s
