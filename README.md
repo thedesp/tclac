@@ -1,19 +1,19 @@
 # 🌀 TCL Air Conditioner Integration for Home Assistant
 
-> Original project repo at https://github.com/I-am-nightingale/tclac
-> Project blog in russian https://dzen.ru/a/ZmdoyUNswXWnulhg
-> German translatioon by https://github.com/sorz2122/tclac
+> Original project repo at https://github.com/I-am-nightingale/tclac  
+> Project blog in russian https://dzen.ru/a/ZmdoyUNswXWnulhg  
+> German translatioon by https://github.com/sorz2122/tclac  
 > Easy DIY using ESP32 and USB-A cable/connector
 
 ---
 
 ## 🛠️ What you need
 
-- **ESP32** (z. B. ESP32-C3, WROOM32, NodeMCU) devkit is recommended for easy programming via USB.
-  👉 I use this module [ESP32-C3 Super Mini](https://www.aliexpress.com/item/1005005967641936.html?spm=a2g0o.order_list.order_list_main.98.794e1802hxxIy0)
+- **ESP32** (z. B. ESP32-C3, WROOM32, NodeMCU) devkit is recommended for easy programming via USB.  
+  - I use this module [ESP32-C3 Super Mini](https://www.aliexpress.com/item/1005005967641936.html?spm=a2g0o.order_list.order_list_main.98.794e1802hxxIy0)
 - **USB-A-Stecker oder -Kabel**
-  👉 Any standard USB cable with USB-A male on one end should work, like the one that came with your gadgets.
-  👉 USB-A male connector like this [AliExpress-Link](https://www.aliexpress.com/item/1005005776162012.html)
+  - Any standard USB cable with USB-A male on one end should work, like the one that came with your gadgets.
+  - USB-A male connector like this [AliExpress-Link](https://www.aliexpress.com/item/1005005776162012.html)
 - **Home Assistant with ESPHome (Version 2023.3.0 and up)**
 
 ---
