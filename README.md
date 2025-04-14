@@ -69,6 +69,8 @@ The image show how to connect USB-A male pinout to ESP module with GPIO4 = RX an
 - Connect a USB cable for fist time flash.
 - OTA (Over-the-Air) can be used for subsequent flashes.
 
+![2025-04-14 19_13_44-Overview – Supalai](https://github.com/user-attachments/assets/a4c32ca6-1ce2-4b60-a346-97a16a68a941)
+
 ---
 
 ## ✅ Compatible air conditioner model
