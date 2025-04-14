@@ -30,9 +30,11 @@ TCL air confitioner model with wifi feature usually comes with wifi module that 
 | VBUS      | Red        | TXD          |
 
 ### 🔍 Sample Image
-The image show how to connect USB-A male pinout to ESP module.
+The image show how to connect USB-A male pinout to ESP module with GPIO4 = RX and GPIO3 = TX as in the sample yaml configuration.  
 
-GPIO4 = RX and GPIO3 = TX as in the sample yaml configuration 
+![20250414_174322](https://github.com/user-attachments/assets/394254ff-1baf-43da-b217-2c59abbf6fb4)
+
+![20250414_174240](https://github.com/user-attachments/assets/24f44c2e-442d-4d52-99cd-aeaa3d922a30)
 
 
 ---
