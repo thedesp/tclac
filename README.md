@@ -1,6 +1,6 @@
 # 🌀 TCL Air Conditioner Integration for Home Assistant (via ESPhome)
 
-TCL air confitioner model with wifi feature usually comes with wifi module that looks like a USB dongle. However, TCL only use standard USB-A connector but change the pinouts to control the AC unit via UART and thus some modifications are needed to connect ESP32 module to the AC unit.
+TCL air conditioner model with wifi feature usually comes with wifi module that looks like a USB dongle. However, TCL only use standard USB-A connector but change the pinouts to control the AC unit via UART and thus some modifications are needed to connect ESP32 module to the AC unit.
 
 
 > Original project repo at https://github.com/I-am-nightingale/tclac  
