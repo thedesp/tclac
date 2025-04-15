@@ -1,17 +1,17 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # # # #                                   NICHT BEARBEITEN!!                                  # # # # #
+# # # # #                                      DO NOT EDIT!!                                    # # # # #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-# Компонент климата
+# Climate component
 external_components:
   - source:
-      url: https://github.com/I-am-nightingale/tclac.git
+      url: https://github.com/thedesp/tclac.git
       type: git
       ref: master
     components: [ tclac ]
     refresh: 30s
 
-# Конфигурация ESPHome
+# ESPHome configuration
 esphome:
   name: ${device_name}
   min_version: 2023.3.0
@@ -118,17 +118,17 @@ captive_portal:
 
 
 # # # # # # # # # # # # # # # # # # # # # # #
-# # # # #     НЕ РЕДАКТИРОВАТЬ!     # # # # #
+# # # # #       DO NOT EDIT!!       # # # # #
 # # # # # # # # # # # # # # # # # # # # # # #
 
-# ОБЯЗАТЕЛЬНО отключаем логгирование через UART
+# IMPORTANT: disable logging via UART
 logger:
   baud_rate: 0
 
-# Раздел настроек устройства:
-# - Переключатели
+# Device settings section:
+# - Switches
 switch:
-  # Пищалка для подтверждения команд, по умолчанию выключена
+  # Beeper for command confirmation, disabled by default
   - name: Beeper
     platform: template
     device_class: switch
@@ -145,7 +145,7 @@ switch:
         lambda: !lambda |-
           id(${device_name}climate).set_beeper_state(false);
   
-  # Индикатор уставки температуры на корпусе внутреннего блока, по умолчанию включен
+  # Temperature setpoint indicator on the indoor unit casing, enabled by default
   - name: Display
     platform: template
     device_class: switch
@@ -162,7 +162,7 @@ switch:
         lambda: !lambda |-
           id(${device_name}climate).set_display_state(false);
   
-  # Светодиодная индикация обмена данными с кондиционером, по умолчанию выключена
+  # LED indication of data exchange with the air conditioner, disabled by default
   - name: Display on module
     platform: template
     device_class: switch
@@ -195,9 +195,9 @@ switch:
         lambda: !lambda |-
           id(${device_name}climate).set_force_mode_state(false);
 
-# - Выпадающие списки
+# - Drop-down lists
 select:
-  # Настройка вертикального качания
+  # Vertical swing configuration
   - platform: template
     name: Vertical swing
     id: vswing
@@ -219,7 +219,7 @@ select:
             id(${device_name}climate).set_vertical_swing_direction(esphome::tclac::VerticalSwingDirection::DOWNSIDE);
           }
 
-  # Настройка горизонтального качания
+  # Horizontal swing configuration
   - platform: template
     name: Horizontal swing
     id: hswing
@@ -244,7 +244,7 @@ select:
             id(${device_name}climate).set_horizontal_swing_direction(esphome::tclac::HorizontalSwingDirection::RIGHTSIDE);
           }
 
-  # Настройка фиксации вертикальной заслонки
+  # Vertical flap fixation configuration
   - platform: template
     name: Vertical fixing
     id: vfixing
@@ -275,7 +275,7 @@ select:
             id(${device_name}climate).set_vertical_airflow(esphome::tclac::AirflowVerticalDirection::MAX_DOWN);
           }
 
-  # Настройка фиксации горизонатальных заслонок
+  # Horizontal flaps fixation configuration
   - platform: template
     name: Horizontal fixing
     id: hfixing

@@ -86,13 +86,13 @@ class tclacClimate : public climate::Climate, public esphome::uart::UARTDevice, 
 
 	private:
 		byte checksum;
-		// dataTX с управлением состоит из 38 байт
+		// dataTX with control consists of 38 bytes
 		byte dataTX[38];
-		// А dataRX по прежнему из 61 байта
+		// And dataRX still consists of 61 bytes
 		byte dataRX[61];
-		// Команда запроса состояния
+		// State request command
 		byte poll[8] = {0xBB,0x00,0x01,0x04,0x02,0x01,0x00,0xBD};
-		// Инициализация и начальное наполнение переменных состоянй переключателей
+		// Initialization and initial population of switch state variables
 		bool beeper_status_;
 		bool display_status_;
 		bool force_mode_status_;

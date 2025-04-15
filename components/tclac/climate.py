@@ -115,7 +115,7 @@ AIRFLOW_HORIZONTAL_DIRECTION_OPTIONS = {
     "MAX_RIGHT": AirflowHorizontalDirection.MAX_RIGHT,
 }
 
-# Проверка конфигурации интерфейса и принятие значений по умолчанию
+# Interface configuration check and acceptance of default values
 def validate_visual(config):
     if CONF_VISUAL in config:
         visual_config = config[CONF_VISUAL]
@@ -141,7 +141,7 @@ def validate_visual(config):
         config[CONF_VISUAL] = {CONF_MIN_TEMPERATURE: TCLAC_MIN_TEMPERATURE,CONF_MAX_TEMPERATURE: TCLAC_MAX_TEMPERATURE,CONF_TEMPERATURE_STEP: {CONF_TARGET_TEMPERATURE: TCLAC_TARGET_TEMPERATURE_STEP,CONF_CURRENT_TEMPERATURE: TCLAC_CURRENT_TEMPERATURE_STEP,},}
     return config
 
-# Проверка конфигурации компонента и принятие значений по умолчанию
+# Component configuration check and acceptance of default values
 CONFIG_SCHEMA = cv.All(
     climate.CLIMATE_SCHEMA.extend(
         {
@@ -182,7 +182,7 @@ HorizontalSwingDirectionAction = tclac_ns.class_("HorizontalSwingDirectionAction
 
 TCLAC_ACTION_BASE_SCHEMA = automation.maybe_simple_id({cv.GenerateID(CONF_ID): cv.use_id(tclacClimate),})
 
-# Регистрация событий включения и отключения дисплея кондиционера
+# Registering air conditioner display on/off events
 @automation.register_action(
     "climate.tclac.display_on", DisplayOnAction, cv.Schema
 )
@@ -194,7 +194,7 @@ async def display_action_to_code(config, action_id, template_arg, args):
     var = cg.new_Pvariable(action_id, template_arg, paren)
     return var
 
-# Регистрация событий включения и отключения пищалки кондиционера
+# Registering air conditioner beeper on/off events
 @automation.register_action(
     "climate.tclac.beeper_on", BeeperOnAction, cv.Schema
 )
@@ -206,7 +206,7 @@ async def beeper_action_to_code(config, action_id, template_arg, args):
     var = cg.new_Pvariable(action_id, template_arg, paren)
     return var
 
-# Регистрация событий включения и отключения светодиодов связи модуля
+# Registering module communication LED on/off events
 @automation.register_action(
     "climate.tclac.module_display_on", ModuleDisplayOnAction, cv.Schema
 )
@@ -218,7 +218,7 @@ async def module_display_action_to_code(config, action_id, template_arg, args):
     var = cg.new_Pvariable(action_id, template_arg, paren)
     return var
     
-# Регистрация событий включения и отключения принудительного применения настроек
+# Registering forced application of settings on/off events
 @automation.register_action(
     "climate.tclac.force_mode_on", ForceOnAction, cv.Schema
 )
@@ -230,7 +230,7 @@ async def force_mode_action_to_code(config, action_id, template_arg, args):
     var = cg.new_Pvariable(action_id, template_arg, paren)
     return var
 
-# Регистрация события установки вертикальной фиксации заслонки
+# Registering the vertical flap fixation setting event
 @automation.register_action(
     "climate.tclac.set_vertical_airflow",
     VerticalAirflowAction,
@@ -251,7 +251,7 @@ async def tclac_set_vertical_airflow_to_code(config, action_id, template_arg, ar
     return var
 
 
-# Регистрация события установки горизонтальной фиксации заслонок
+# Registering the horizontal flap fixation setting event
 @automation.register_action(
     "climate.tclac.set_horizontal_airflow",
     HorizontalAirflowAction,
@@ -270,7 +270,7 @@ async def tclac_set_horizontal_airflow_to_code(config, action_id, template_arg, 
     return var
 
 
-# Регистрация события установки вертикального качания шторки
+# Registering the vertical flap swing setting event
 @automation.register_action(
     "climate.tclac.set_vertical_swing_direction",
     VerticalSwingDirectionAction,
@@ -289,7 +289,7 @@ async def tclac_set_vertical_swing_direction_to_code(config, action_id, template
     return var
 
 
-# Регистрация события установки горизонтального качания шторок
+# Registering the horizontal flap swing setting event
 @automation.register_action(
     "climate.tclac.set_horizontal_swing_direction",
     HorizontalSwingDirectionAction,
@@ -308,7 +308,7 @@ async def tclac_set_horizontal_swing_direction_to_code(config, action_id, templa
     return var
 
 
-# Добавление конфигурации в код
+# Adding configuration to the code
 def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])
     yield cg.register_component(var, config)
