@@ -1,8 +1,8 @@
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # # # #                                   НЕ РЕДАКТИРОВАТЬ!!                                  # # # # #
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # #                                   DO NOT EDIT!!                                     # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-# Компонент климата
+# Climate component
 external_components:
   - source:
       url: https://github.com/I-am-nightingale/tclac.git
@@ -11,7 +11,7 @@ external_components:
     components: [ tclac ]
     refresh: 30s
 
-# Конфигурация ESPHome
+# ESPHome configuration
 esphome:
   name: ${device_name}
   min_version: 2023.3.0
@@ -117,18 +117,18 @@ wifi:
 captive_portal:
 
 
-# # # # # # # # # # # # # # # # # # # # # # #
-# # # # #     НЕ РЕДАКТИРОВАТЬ!     # # # # #
-# # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # #     DO NOT EDIT!     # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # #
 
-# ОБЯЗАТЕЛЬНО отключаем логгирование через UART
+# Be sure to disable logging over UART
 logger:
   baud_rate: 0
 
-# Раздел настроек устройства:
-# - Переключатели
+# Device settings section:
+# - Switches
 switch:
-  # Пищалка для подтверждения команд, по умолчанию выключена
+  # Beeper for command confirmation, default off
   - name: Beeper
     platform: template
     device_class: switch
@@ -145,7 +145,7 @@ switch:
         lambda: !lambda |-
           id(${device_name}climate).set_beeper_state(false);
   
-  # Индикатор уставки температуры на корпусе внутреннего блока, по умолчанию включен
+  # Setpoint display indicator on the indoor unit casing, default on
   - name: Display
     platform: template
     device_class: switch
@@ -162,7 +162,7 @@ switch:
         lambda: !lambda |-
           id(${device_name}climate).set_display_state(false);
   
-  # Светодиодная индикация обмена данными с кондиционером, по умолчанию выключена
+  # LED indicator for data exchange with the air conditioner, default off
   - name: Display on module
     platform: template
     device_class: switch
@@ -195,17 +195,17 @@ switch:
         lambda: !lambda |-
           id(${device_name}climate).set_force_mode_state(false);
 
-# - Выпадающие списки
+# - Dropdown lists
 select:
-  # Настройка вертикального качания
+  # Vertical swing setting
   - platform: template
     name: Vertical swing
     id: vswing
     entity_category: config
     options:
-      - "Сверху вниз"
-      - "В верхней половине"
-      - "В нижней половине"
+      - "Full vertical swing"
+      - "Upper half swing"
+      - "Lower half swing"
     optimistic: true
     restore_value: true
     on_value:
@@ -219,16 +219,16 @@ select:
             id(${device_name}climate).set_vertical_swing_direction(esphome::tclac::VerticalSwingDirection::DOWNSIDE);
           }
 
-  # Настройка горизонтального качания
+  # Horizontal swing setting
   - platform: template
     name: Horizontal swing
     id: hswing
     entity_category: config
     options:
-      - "Слева направо"
-      - "В левой части"
-      - "В центре"
-      - "В правой части"
+      - "Full horizontal swing"
+      - "Left half swing"
+      - "Center swing"
+      - "Right half swing"
     optimistic: true
     restore_value: true
     on_value:
@@ -244,18 +244,18 @@ select:
             id(${device_name}climate).set_horizontal_swing_direction(esphome::tclac::HorizontalSwingDirection::RIGHTSIDE);
           }
 
-  # Настройка фиксации вертикальной заслонки
+  # Vertical flap fixing setting
   - platform: template
     name: Vertical fixing
     id: vfixing
     entity_category: config
     options:
-      - "Последнее положение"
-      - "До упора вверх"
-      - "В верхней половине"
-      - "По середине"
-      - "В нижней половине"
-      - "До упора вниз"
+      - "Last position"
+      - "Fully up"
+      - "Upper half"
+      - "Middle"
+      - "Lower half"
+      - "Fully down"
     optimistic: true
     restore_value: true
     on_value:
@@ -275,18 +275,18 @@ select:
             id(${device_name}climate).set_vertical_airflow(esphome::tclac::AirflowVerticalDirection::MAX_DOWN);
           }
 
-  # Настройка фиксации горизонатальных заслонок
+  # Horizontal flap fixing setting
   - platform: template
     name: Horizontal fixing
     id: hfixing
     entity_category: config
     options:
-      - "Последнее положение"
-      - "До упора влево"
-      - "В левой половине"
-      - "По середине"
-      - "В правой половине"
-      - "До упора вправо"
+      - "Last position"
+      - "Fully left"
+      - "Left half"
+      - "Middle"
+      - "Right half"
+      - "Fully right"
     optimistic: true
     restore_value: true
     on_value:
