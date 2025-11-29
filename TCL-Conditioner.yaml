@@ -1,58 +1,68 @@
-
 substitutions:
-# Уникальное имя этой конфигурации, стоит использовать только латинские буквы и цифры, никаких пробелов или
-# спецсимволов, например, "tclac". Если будет несколько модулей кондиционера, то device_name надо изменить,
-# например, добавляя цифры: tclac1, tclac2, tclac3...
+  # Unique name for this configuration - use only Latin letters and numbers,
+  # no spaces or special characters, e.g., "tclac".
+  # If you have multiple climate modules, device_name must be changed accordingly,
+  # e.g., by appending numbers: tclac1, tclac2, tclac3...
   device_name: tclac
-# Человеческое имя для кондиционера, для интерфейса:
+
+  # Human-readable name for the climate device, displayed in the user interface:
   humanly_name: TCL Air Conditioner
-# Настройки подключения к WiFI, данные могут храниться в файле "secret" в ESPHome, если нет- редактируем:
-# Имя точки доступа WiFI:
+
+  # Wi-Fi credentials - can alternatively be stored in the "secret" file in ESPHome, otherwise edit here:
+  # Name of the Wi-Fi network:
   wifi_ssid: !secret wifi_ssid
-# Пароль точки доступа WiFI:
+
+  # Wi-Fi password:
   wifi_password: !secret wifi_password
-# Пароль для точки доступа для восстановления, имя точки доступа будет: "{device_name} Fallback Hotspot"
+
+  # Password for recovery mode - the hotspot will then be named: "{device_name} Fallback Hotspot"
   recovery_pass: mKSzmBdt7DAj
-# Пароль для обновления по воздуху, генерируется один раз и потом используется всегда на автомате:
+
+  # Password for OTA updates - generated once and used permanently:
   ota_pass: 90cf525a594c8bb2cbf917bc2c2fa058
-# Ключ подключения к Home Assistant API, новый ключ можно получить здесь: https://esphome.io/components/api.html:
-  api_key: lmUoWsWs1oqSfJqLFsA6PisHSx4Y1G+iu7V3PDIqpXk=
-# Выводы модуля, к которым подключен UART:
-  uart_rx: GPIO3
-  uart_tx: GPIO1
-# Выводы модуля для подключения сигнальных светодиодов, для работы надо раскомментировать "leds" в "packages"
-# иначе работать не будет совсем и можно писать сюда вообще что угодною. Для тех, кто просил их удалить.
+
+  # API key for connecting to Home Assistant - generate a new key here: https://esphome.io/components/api.html
+  api_key: QpZTJbJ0Uuv2HDJOQKb9QYDFZyQR9JV7JQmmgVGxx8U=
+
+  # GPIO pins of the module to which UART is connected:
+  uart_rx: GPIO4 #Change to your prefered GPIO
+  uart_tx: GPIO3 #Change to your prefered GPIO
+
+  # GPIO pins for status LEDs (receive/transmit). Only work if "leds" is enabled in "packages".
+  # If you don't want to use LEDs, you can enter any values here.
   receive_led: GPIO6
   transmit_led: GPIO4
 
-# Подгружаемые файлы- загружаются и обновляются автоматически из интернета, раскомментировать нужные
-# Описание опций:
-# - packages/leds.yaml - светодиоды для индикации приема/передачи, пины указываются в receive_led / transmit_led
+# Included files - are automatically downloaded and updated from the internet.
+# Uncomment the desired options.
+# Description of the options:
+# - packages/leds.yaml - LEDs to indicate sending/receiving; define pins via receive_led / transmit_led
 #
-# Выравнивать раскомментированные строки обязательно по указанной позиции!
+# All entered lines must be exactly at this indentation level - otherwise errors will occur!
 packages:
   remote_package:
-    url: https://github.com/I-am-nightingale/tclac.git
+    url: https://github.com/thedesp/tclac.git
     ref: master
     files:
-    # v - равнение строк с опциями вот по этой позиции, иначе глючить будет
-      - packages/core.yaml # Ядро всего сущего
+      # v - Lines must be aligned exactly here, otherwise there will be problems!
+      - packages/core.yaml # The core of the whole thing
       # - packages/leds.yaml
     refresh: 30s
 
-# Выбранный модуль, прошиваемой этой прошивкой. Можно раскомментировать готовую заготовку, удалив имеющуюся:
+# Selected module that will be flashed with this firmware.
+# Prepared configurations can be used by removing the comment:
 
 # ESP-01S
 esp8266:
   board: esp01_1m
 
-# Hommyn HDN/WFN-02-01, из первой статьи
+# Hommyn HDN/WFN-02-01 (from the first article)
 #esp32:
 #  board: esp32-c3-devkitm-1
 #  framework:
 #    type: arduino
 
-# Светодиод статуса. Включать по желанию при наличии свободных пинов
+# Status LED - optionally enable if free pins are available
 #status_led:
 #  pin:
 #    number: GPIO5
