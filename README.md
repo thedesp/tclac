@@ -4,8 +4,7 @@ TCL air conditioner model with wifi feature usually comes with wifi module that 
 
 
 > Original project repo at https://github.com/I-am-nightingale/tclac  
-> Project blog in russian https://dzen.ru/a/ZmdoyUNswXWnulhg  
-> German translation by https://github.com/sorz2122/tclac  
+> Project blog in russian https://dzen.ru/a/ZmdoyUNswXWnulhg
 
 ---
 
