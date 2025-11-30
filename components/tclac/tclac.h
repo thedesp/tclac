@@ -1,8 +1,8 @@
 /**
-* Create by Miguel Ángel López on 20/07/19
-* and modify by xaxexa
+* Created by Miguel Ángel López on 20/07/19
+* and modified by xaxexa
 * Refactoring & component making:
-* Соловей с паяльником 15.03.2024
+* Nightingale with a soldering iron 15.03.2024
 **/
 
 #ifndef TCL_ESP_TCL_H
@@ -24,21 +24,21 @@ namespace tclac {
 #define MODE_AUTO		0b00110101
 #define MODE_COOL		0b00110001
 #define MODE_DRY		0b00110011
-#define MODE_FAN_ONLY	0b00110010
+#define MODE_FAN_ONLY		0b00110010
 #define MODE_HEAT		0b00110100
 
 #define FAN_SPEED_POS	8
 #define FAN_QUIET_POS	33
 
-#define FAN_AUTO		0b10000000	//auto
-#define FAN_QUIET		0x80		//silent
-#define FAN_LOW			0b10010000	//	|
-#define FAN_MIDDLE		0b11000000	//	||
-#define FAN_MEDIUM		0b10100000	//	|||
-#define FAN_HIGH		0b11010000	//	||||
-#define FAN_FOCUS		0b10110000	//	|||||
-#define FAN_DIFFUSE		0b10000000	//	POWER [7]
-#define FAN_SPEED_MASK	0b11110000	//FAN SPEED MASK
+#define FAN_AUTO		0b10000000	// auto
+#define FAN_QUIET		0x80		// silent
+#define FAN_LOW			0b10010000	// |
+#define FAN_MIDDLE		0b11000000	// ||
+#define FAN_MEDIUM		0b10100000	// |||
+#define FAN_HIGH		0b11010000	// ||||
+#define FAN_FOCUS		0b10110000	// |||||
+#define FAN_DIFFUSE		0b10000000	// POWER [7]
+#define FAN_SPEED_MASK	0b11110000	// FAN SPEED MASK
 
 #define SWING_POS			10
 #define SWING_OFF			0b00000000
@@ -86,13 +86,13 @@ class tclacClimate : public climate::Climate, public esphome::uart::UARTDevice, 
 
 	private:
 		byte checksum;
-		// dataTX с управлением состоит из 38 байт
+		// dataTX with control consists of 38 bytes
 		byte dataTX[38];
-		// А dataRX по прежнему из 61 байта
+		// And dataRX is still 61 bytes
 		byte dataRX[61];
-		// Команда запроса состояния
+		// Command to request status
 		byte poll[8] = {0xBB,0x00,0x01,0x04,0x02,0x01,0x00,0xBD};
-		// Инициализация и начальное наполнение переменных состоянй переключателей
+		// Initialization and initial filling of variables for switch states
 		bool beeper_status_;
 		bool display_status_;
 		bool force_mode_status_;
